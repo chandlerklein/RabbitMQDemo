@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "name": "guest",
+      "password_hash": "kI3GCrswBLNZQzHJJ95QLoyfAVooYhnvf7jbqiW9BjOYUloe",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "global_parameters": [
+    {
+      "name": "cluster_name",
+      "value": "rabbit@58cb492cd4ee"
+    },
+    {
+      "name": "internal_cluster_id",
+      "value": "rabbitmq-cluster-id-DlZ_FZVpiFx93CVZXneG4A"
+    }
+  ],
+  "queues": [
+    {
+      "name": "events",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "default",
+      "vhost": "/",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": "false",
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "default",
+      "vhost": "/",
+      "destination": "events",
+      "destination_type": "queue",
+      "routing_key": "*",
+      "arguments": {}
+    }
+  ]
+}

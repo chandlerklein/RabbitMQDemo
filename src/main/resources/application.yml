@@ -1,0 +1,20 @@
+spring:
+  rabbitmq:
+    addresses: localhost:5672
+    username: guest
+    password: guest
+  cloud:
+    function:
+      definition: message
+    stream:
+      bindings:
+        input-in-0:
+          destination: default
+          group: events
+      rabbit:
+        bindings:
+          input-in-0:
+            consumer:
+              bind-queue: false
+              declare-exchange: false
+              queue-name-group-only: true
